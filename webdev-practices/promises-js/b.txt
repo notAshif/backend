@@ -1,0 +1,10 @@
+[
+  {
+    "PATH": "./CODE/PACKAGE.JSON",
+    "CONTENTS": "{\"NAME\":\"CODE-PROJECT\"}"
+  },
+  {
+    "PATH": "./CODE/INDEX.JS",
+    "CONTENTS": "CONSOLE.LOG('HI THERE')"
+  }
+]
