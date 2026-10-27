@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { type NextFunction, type Request, type Response } from "express"
+import { type NextFunction, type Request, type Response } from "express";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user";
 
@@ -13,7 +13,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET!, {
             algorithms: ["HS512"]
-        })
+        });
 
         if (!payload) {
             return res.status(401).json({
@@ -28,9 +28,10 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
         }
 
         req.userId = user.id;
+        req.userRole = user.role as "admin" | "user" | "oracle";
         next();
-    } catch (err: any) {
-        console.log(err)
-        return res.status(500).json({message: "Internal server error."})
+    } catch (err: unknown) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal server error." });
     }
-}
+};

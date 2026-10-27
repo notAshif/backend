@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { marketController } from "../controllers/marketController";
 import { auth } from "../middleware/auth";
+import { requireAdminOrOracle } from "../middleware/admin";
 import { resolveController } from "../controllers/resolveController";
 
 const router = Router();
 
-router.post("/", auth, resolveController.resolve);
+router.post("/", auth, requireAdminOrOracle, resolveController.resolve);
 
 export default router;

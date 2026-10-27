@@ -1,10 +1,5 @@
 # Minikalshi
 
-## API Documentation
-[Postman API Documentation](https://documenter.getpostman.com/view/44942162/2sBYHVuyCw)
-
----
-
 To install dependencies:
 
 ```bash

@@ -9,8 +9,13 @@ const walletEventSchema = new mongoose.Schema(
     },
     tx_type: {
       type: String,
-        enum: ["onramp", "created", "bet", "payout", "refund"],
+      enum: ["onramp", "created", "bet", "payout", "refund", "fee"],
       required: true,
+    },
+    side: {
+      type: String,
+      enum: ["yes", "no"],
+      required: false,
     },
     externalId: {
       type: mongoose.Schema.Types.Mixed,

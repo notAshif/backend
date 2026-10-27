@@ -1,8 +1,8 @@
 import "dotenv/config";
 import type { Request, Response } from "express";
-import { onrampSchema, signinSchema, signupSchema } from "../types/auth";
+import { onrampSchema, signinSchema, signupSchema } from "../zods/auth";
 import { User } from "../models/user";
-import bcrypt from "bcrypt"; 
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { WalletEvent } from "../models/walletEvent";
 
@@ -34,7 +34,7 @@ export const authController = {
                 id: user._id,
             });
 
-        } catch (error: any) {
+        } catch (error: unknown) {
             return res.status(500).json({
                 message: "Internal server error"
             })
@@ -69,12 +69,12 @@ export const authController = {
                 expiresIn: "1d",
                 algorithm: "HS512"
             });
-            
+
             return res.status(200).json({
                 token: token
             });
 
-        } catch (error: any) {
+        } catch (error: unknown) {
             return res.status(500).json({
                 message: "Internal server error"
             })
@@ -93,8 +93,8 @@ export const authController = {
 
             const { amount } = parsed.data;
 
-            const user = await User.findByIdAndUpdate(req.userId, 
-                {$inc: { balance: amount }},
+            const user = await User.findByIdAndUpdate(req.userId,
+                { $inc: { balance: amount } },
                 { returnDocument: 'after' },
             )
 
@@ -113,8 +113,8 @@ export const authController = {
             return res.status(200).json({
                 balance: user.balance,
             })
-            
-        } catch (error: any) {
+
+        } catch (error: unknown) {
             return res.status(500).json({
                 message: "Internal server error."
             })
@@ -132,8 +132,8 @@ export const authController = {
             }
 
             return res.status(200).json(user);
-            
-        } catch (error: any) {
+
+        } catch (error: unknown) {
             return res.status(500).json({
                 message: "Internal server error."
             })
@@ -154,8 +154,8 @@ export const authController = {
             }
 
             return res.status(200).json(transaction);
-            
-        } catch (error: any) {
+
+        } catch (error: unknown) {
             return res.status(500).json({
                 message: "Internal server error."
             });

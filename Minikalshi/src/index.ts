@@ -25,6 +25,6 @@ try {
     .then(() => console.log("Database connected successfully!!"))
     .catch(() => console.log("failed to connect database."));
   app.listen(3000, () => console.log("Server running at port 3000."));
-} catch (err: any) {
+} catch (err: unknown) {
   console.log("failed to connect db.");
 }

@@ -26,6 +26,11 @@ const marketSchema = new mongoose.Schema(
             type: Date,
             required: true,
         },
+        status: {
+            type: String,
+            enum: ["open", "closed", "resolved", "cancelled"],
+            default: "open",
+        },
         resolution: {
             type: String,
             enum: ["yes", "no", null],

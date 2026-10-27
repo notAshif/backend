@@ -10,5 +10,6 @@ export const createMarketSchema = z.object({
 
 export const placeBetSchema = z.object({
     marketId: z.string(),
+    side: z.enum(["yes", "no"]),
     amount: z.number().int().positive()
 })  
